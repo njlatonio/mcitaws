@@ -5,6 +5,7 @@ resource "aws_s3_bucket" "bucket1" {
         }
 }
 
+#To disable S3 versioning
 resource "aws_s3_bucket" "example" {
   bucket = "example-bucket"
 }

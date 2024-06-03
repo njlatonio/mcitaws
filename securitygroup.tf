@@ -39,6 +39,13 @@ resource "aws_security_group" "vpc-web" {
         protocol = "tcp"
         cidr_blocks=["0.0.0.0/0"]
     }
+    ingress{
+        description="Allow port 3389"
+        from_port = 3389
+        to_port = 3389
+        protocol = "rdp"
+        cidr_blocks=["0.0.0.0/0"]
+    }
     egress{
         description = "Allow all ip and ports outbound"
         from_port=0

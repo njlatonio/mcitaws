@@ -13,3 +13,8 @@ variable "instance_type"{
     type =string
     default="t3.micro"
 }
+
+variable "db_username"{
+}
+variable "db_password"{
+}

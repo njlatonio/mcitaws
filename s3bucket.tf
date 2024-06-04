@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "bucket_test" {
 
 resource "aws_s3_bucket_versioning" "versioning_example_test" {
   count = var.bucket_count
-  bucket = aws_s3_bucket.bucket_test.id[count.index]
+  bucket = aws_s3_bucket.bucket_test[count.index]
   versioning_configuration {
     status = "Disabled"
   }

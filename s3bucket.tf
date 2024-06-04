@@ -18,15 +18,19 @@ resource "aws_s3_bucket_versioning" "versioning_example" {
 }
 
 #Create 5 buckets and disable versioning for all
+variable "bucket_count"{
+    type=number
+    default=5
+}
 resource "aws_s3_bucket" "bucket_test" {
-    count=5
+    count=var.bucket_count
     tags = {
         name="tst-bucket-${count.index}"
         }
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example_test" {
-  count = length(aws_s3_bucket.bucket_test.count)
+  count = var.bucket_count
   bucket = aws_s3_bucket.bucket_test.id[count.index]
   versioning_configuration {
     status = "Disabled"

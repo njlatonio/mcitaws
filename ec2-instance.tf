@@ -13,8 +13,8 @@ locals{
   ec2instance = yamldecode(file("${path.module}/ec2instancefolder/ec2-instance.yaml"))
   ec2instance_list = [
     for value in local.ec2instance.ec2instanceconfiguration: {
-        name=value.name
-        instance_type=value.instance_type
+        name=value.tagname
+        instance_type=value.instancetype
       }
     ]
 }
@@ -22,9 +22,9 @@ locals{
 resource "aws_instance""ec2instance_example"{
     for_each = { for value in local.ec2instance_list: value.name => value }
     ami=data.aws_ami.amz_linux2.id
-    instance_type = each.value.instance_type
+    instance_type = each.value.instancetype
     vpc_security_group_ids = [aws_security_group.vpc-ssh.id,aws_security_group.vpc-web.id]
     tags = {
-        name=each.value.name
+        name=each.value.tagname
     }
 }

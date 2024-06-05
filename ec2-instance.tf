@@ -12,7 +12,7 @@ resource "aws_instance""myec2m"{
 locals{
   ec2instance = yamldecode(file("${path.module}/ec2instancefolder/ec2-instance.yaml"))
   ec2instance_list = [
-    for value in local.ec2instance: {
+    for value in local.ec2instancefolder.ec2instanceconfiguration: {
         name=value.name
         instance_type=value.instance_type
       }

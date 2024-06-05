@@ -10,7 +10,7 @@ resource "aws_instance""myec2m"{
 
 # Creating an ec2 instance via yaml
 locals{
-  ec2instance = yamldecode(file("${path.module}/ec2instancefolder"))
+  ec2instance = yamldecode(file("${path.module}/ec2instancefolder/ec2-instance.yaml"))
   ec2instance_list = [
     for value in local.ec2instance: {
         name=value.name

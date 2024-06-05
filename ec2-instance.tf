@@ -19,7 +19,7 @@ locals{
     ]
 }
 
-resource "aws_instance""ec2instance_example2"{
+resource "aws_instance""ec2instance_example"{
     for_each = { for instance in local.ec2instance_list: "${instance.name}" => instance }
     ami=data.aws_ami.amz_linux2.id
     instance_type = each.value.instance_type

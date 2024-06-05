@@ -20,7 +20,7 @@ locals{
 }
 
 resource "aws_instance""ec2instance_example"{
-    for_each = { for value in local.ec2instance_list: value.name => value }
+    for_each = { for value in local.ec2instance_list: "${value.name}" => value }
     ami=data.aws_ami.amz_linux2.id
     instance_type = each.value.instancetype
     vpc_security_group_ids = [aws_security_group.vpc-ssh.id,aws_security_group.vpc-web.id]
